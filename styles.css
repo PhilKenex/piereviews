@@ -1,140 +1,247 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
+/* Basic styling */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #333333;
-    background-color: #333;
-    background: url('sheffield-pie-background.jpg') no-repeat center center fixed;
-    background-size: cover;
-}
-
-/* Responsive Text */
-h1 {
-    color: white;
-    text-align: center; /* Use text-align for responsiveness */
-    margin-top: 5%; /* Use percentage for responsive margin */
-    font-size: 2em; /* Responsive font size */
 }
 
 .nav {
-    background-color: black;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0 10px;
-}
-
-/* Responsive Navigation Links */
-.nav-links {
-    display: flex;
-    gap: 10px; /* Reduced gap for smaller screens */
-    flex-wrap: wrap; /* Allows links to wrap on smaller screens */
-}
-
-.nav-links a {
-    color: white;
-    text-align: center;
-    padding: 10px;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.nav-links a:hover {
-    background-color: #ddd;
-    color: black;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .logo {
-    height: 50px;
-    margin-right: 10px;
-    background-color: black;
+    width: 50px;
+    height: auto;
+    margin-right: 20px;
 }
 
 .title {
     color: white;
-    font-size: 1.5em; /* Responsive font size */
-    margin-right: auto;
+    text-decoration: none;
+    font-size: 24px;
+    flex-grow: 1;
 }
 
-.button {
-    padding: 10px 20px;
-    background-color: #E09B2D;
-    color: #313131;
-    text-align: center;
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
     text-decoration: none;
+    margin: 0 10px;
+    padding: 10px 20px;
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+}
+
+.nav-links a:hover {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
     border-radius: 5px;
     transition: background-color 0.3s;
-    font-size: 1em; /* Responsive font size */
-}
-
-.button:hover {
-    background-color: #995C0D;
-}
-
-.buttons-container, .counters-container, .image-text-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-    width: 90%; /* Use percentage for responsive width */
-    max-width: 600px; /* Maximum width */
-    margin: auto;
-}
-
-/* Responsive Counters */
-.counters-container div {
-    font-size: 1.5em; /* Responsive font size */
-    margin-bottom: 10px;
-    color: white;
 }
 
 .content {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 86vh; /* Minimum height */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Vertically center content in the container */
+    align-items: center; /* Horizontally center content in the container */
     color: white;
+    padding: 20px;
+    background-image: url('sheffield-pie-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     width: 100%;
+    height: 100vh; /* Full height of the viewport */
+    margin: auto;
+    box-sizing: border-box;
 }
 
-h3, .text-container p {
+.counters-container {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center-align the items */
+    margin: 20px 0; /* Adjust margin as needed */
+}
+
+.label {
+    padding-bottom: 20px;
+}
+
+.buttons-container .button {
+    margin: 10px; /* Adjust the margin to increase space */
+    /* other button styles */
+}
+
+.image-text-container {
+    width: 70%; /* Adjust the width as needed */
+    display: flex;
+    flex-direction: column; /* Stacks children vertically */
+    align-items: center; /* Aligns children (image and text) in the center */
+}
+
+.image-text-container img {
+    width: 70%; /* Smaller width, adjust as needed */
+    height: auto;
+    margin-bottom: 20px; /* Space between image and text */
+    display: flex;
+    justify-content: center;
+}
+
+h3 {
     text-align: center;
-    line-height: 1.6;
-    padding: 5px;
+}
+
+.text-container {
+    text-align: justify;
+    width: 70%; /* Full width of the container */
+}
+
+p {
+    line-height: 30px;
+}
+
+.link {
+    display: flex;
+    justify-content: center;
+    color: white;
 }
 
 .footer {
-    background-color: black;
+    background-color: #333;
     color: white;
     text-align: center;
-    padding: 1em 0;
-    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Align elements on opposite ends */
+    align-items: center; /* Vertically center elements */
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-    .nav-links, .buttons-container, .counters-container, .image-text-container {
-        flex-direction: column;
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.right p {
+    display: inline; /* Display as inline elements */
+}
+
+.link {
+    display: inline; /* Display as inline elements */
+}
+
+/* Button styling */
+.button {
+    background-color: #E09B2D;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #995C1D;
+}
+
+/* Counter styling */
+.counters-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.counters-container .label {
+    font-size: 18px;
+}
+
+.counter {
+    font-weight: bold;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 600px) {
+    .nav {
+        flex-direction: column; /* Stack title and logo on top of links */
         align-items: center;
+        text-align: center;
     }
 
-    .nav-links a {
-        padding: 8px;
-        font-size: 0.9em;
-    }
-
-    .button, .counters-container div {
-        font-size: 0.8em;
-    }
-
-    h1 {
-        font-size: 1.8em;
+    .content h1 {
+        text-align: center;
     }
 
     .title {
-        font-size: 1.2em;
+        margin-top: 10px; /* Add some space between title and logo */
+        border-bottom: 1px solid white;
+        padding-bottom: 5px;
+    }
+
+    .nav-links a {
+        text-align: center;
+        border-top: 1px solid white;
+        color: white;
+        text-decoration: none;
+        margin: 0;
+        padding: 20px 20px;
+        display: inline-block;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .image-text-container {
+        width: 80%; /* Adjust the width as needed */
+        display: flex;
+        flex-direction: column; /* Stacks children vertically */
+        align-items: center; /* Aligns children (image and text) in the center */
+    }
+    
+    .image-text-container img {
+        width: 80%; /* Smaller width, adjust as needed */
+        height: auto;
+        margin-bottom: 20px; /* Space between image and text */
+        display: flex;
+        justify-content: center;
+    }
+    
+    h3 {
+        text-align: center;
+    }
+    
+    .text-container {
+        text-align: justify;
+        width: 80%; /* Full width of the container */
+    }
+    
+    p {
+        line-height: 30px;
+    }
+    
+    .link {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        color: white;
     }
 }

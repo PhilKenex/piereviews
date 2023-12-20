@@ -21,3 +21,4 @@ window.onload = function() {
     animateCounter('shopsCounter', 96, 2000); // Pie Shops
     animateCounter('flavoursCounter', 48, 2000); // Flavours
 };
+
