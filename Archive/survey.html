@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Review - New Zealand Pie Reviews</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>NZ Pie Reviews</h1>
+    </div>
+    <div class="nav">
+        <a href="dashboard.html">Find Pies</a>
+        <a href="survey.html">Review Pies</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+<h1>Add Review</h1>
+</div>
+    <div class="embed-container">
+        <iframe 
+            name="survey123webform" 
+            width="500" 
+            height="400" 
+            frameborder="0" 
+            marginheight="0" 
+            marginwidth="0" 
+            title="Wellington Pie Reviews" 
+            src="https://arcg.is/PuOyj"
+            allow="geolocation https://survey123.arcgis.com; camera https://survey123.arcgis.com">
+        </iframe>
+    </div>
+    <script>
+        var survey123webform = document.getElementsByName('survey123webform')[0]
+        window.addEventListener("message",e=>{if(e.data){var t=JSON.parse(e.data);
+        ["survey123:webform:formLoaded","survey123:onFormLoaded"].includes(t.event)&&t.contentHeight&&(survey123webform.parentNode.style.height=t.contentHeight+"px")&&(survey123webform.parentNode.style["padding-bottom"]="unset")}});
+    </script>
+<div class="footer">
+    <p>NZ Pie Reviews 2023</p>
+</div>
+</body>
+</html>

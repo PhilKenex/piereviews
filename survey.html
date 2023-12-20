@@ -1,26 +1,27 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Review - New Zealand Pie Reviews</title>
+    <title>Review Pies | NZ Pie Reviews</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" type="image/png" href="pie-icon.png">
 </head>
 <body>
-    <div class="header">
-        <h1>NZ Pie Reviews</h1>
-    </div>
     <div class="nav">
-        <a href="dashboard.html">Find Pies</a>
-        <a href="survey.html">Review Pies</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+        <img src="pie-icon.png" alt="Logo" class="logo">
+        <a href="index.html" span class="title">NZ Pie Reviews</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Find Pies</a>
+            <a href="survey.html">Review Pies</a>
+            <a href="about.html">About</a>
+        </div>
     </div>
-<h1>Add Review</h1>
-</div>
-    <div class="embed-container">
+    <div class="content">
         <iframe 
             name="survey123webform" 
-            width="500" 
-            height="400" 
+            width="800" 
+            height="1700" 
             frameborder="0" 
             marginheight="0" 
             marginwidth="0" 
@@ -29,13 +30,8 @@
             allow="geolocation https://survey123.arcgis.com; camera https://survey123.arcgis.com">
         </iframe>
     </div>
-    <script>
-        var survey123webform = document.getElementsByName('survey123webform')[0]
-        window.addEventListener("message",e=>{if(e.data){var t=JSON.parse(e.data);
-        ["survey123:webform:formLoaded","survey123:onFormLoaded"].includes(t.event)&&t.contentHeight&&(survey123webform.parentNode.style.height=t.contentHeight+"px")&&(survey123webform.parentNode.style["padding-bottom"]="unset")}});
-    </script>
-<div class="footer">
-    <p>NZ Pie Reviews 2023</p>
-</div>
+    <div class="footer">
+        <p>&copy; 2023 NZ Pie Reviews</p>
+    </div>
 </body>
 </html>

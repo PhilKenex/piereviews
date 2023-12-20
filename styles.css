@@ -1,53 +1,163 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-}
-.header {
-    background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    padding: 1em 0;
-}
-.nav {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #333333;
     background-color: #333;
-    overflow: hidden;
+    background: url('sheffield-pie-background.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
-.nav a {
-    float: left;
+
+h1 {
+    color: white;
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    margin-top: 90px;
+}
+
+.nav {
+    background-color: black; /* Choose the color you prefer */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center items horizontally */
+    padding: 0 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px; /* Adds space between each link */
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: start; /* Aligns items to the start of the nav bar */
+    width: 50%; /* Set the desired width */
+    margin-right: auto;
+    margin-left: calc(50% - 50%); /* 50% of the container minus half of the element's width */
+}
+
+.nav-links a {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
 }
-.nav a:hover {
+
+.nav-links a:hover {
     background-color: #ddd;
     color: black;
 }
-.content {
-    margin: 15px;
+
+.logo {
+    display: flex;
+    margin-right:10px;
+    height: 50px; /* Adjust as needed */
+    background-color: black;
 }
+
+.title {
+    display:flex;
+    text-decoration: none;
+    color: white;
+    font-size: 24px; /* Adjust as needed */
+    margin-right: auto; /* Adds space between title and links */
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #E09B2D; /* Button color */
+    color: #313131; /* Text color */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.button:hover {
+    background-color: #995C0D; /* Darker shade on hover */
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    margin: 0 15px;
+    padding: 20px;
+}
+
+.label {
+    padding:100px;
+}
+
+.counters-container div {
+    display: flex;
+    margin-bottom: 0px; /* Space between counters */
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px;
+    color: white;
+    justify-content: center;
+}
+
+.content {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 86vh; /* Takes the full height of the viewport */
+    color: white;
+    width: 100%; /* Takes the full width of the viewport */
+    flex-direction: column;
+}
+
+.image-text-container {
+    width: 70%; /* Adjust the width as needed */
+    display: flex;
+    flex-direction: column; /* Stacks children vertically */
+    align-items: center; /* Aligns children (image and text) in the center */
+}
+
+.image-text-container img {
+    width: 70%; /* Smaller width, adjust as needed */
+    height: auto;
+    margin-bottom: 20px; /* Space between image and text */
+    display: flex;
+    justify-content: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.text-container {
+    text-align: justify;
+    width: 70%; /* Full width of the container */
+}
+
+p {
+    line-height: 30px;
+}
+
+.link {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
 .footer {
-    background-color: #333;
+    background-color: black;
     color: white;
     text-align: center;
     padding: 1em 0;
-    position: fixed;
-    bottom: 0;
+    position: relative;
     width: 100%;
 }
-.embed-container {
-    position: relative; height: 0; padding-bottom:80%; max-width: 100%;
-    } 
-    .embed-container iframe, .embed-container object, .embed-container iframe {
-        position: absolute; 
-        top: 0; 
-        left: 0; 
-        width: 100%; 
-        height: 100%;
-        } 
-        small {
-            position: absolute; 
-            z-index: 40; 
-            bottom: 0; 
-            margin-bottom: -15px;
-            }
