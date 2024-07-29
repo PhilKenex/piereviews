@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Zealand Pie Reviews</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" type="image/png" href="pie-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+                /* Add styles for the tables */
+        .leaderboard-container {
+            margin-top: 20px;
+        }
+        .leaderboard {
+            width: 100%;
+            max-height: 400px; /* Set a fixed height for scrollable table */
+            overflow-y: auto; /* Add vertical scrolling */
+            border: 1px solid #ddd;
+            background-color: black; /* Set table background to black */
+            color: lightgrey; /* Set table text color to light grey */
+            border-radius: 10px; /* Rounded edges */
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a little shadow */
+            display: none; /* Hide by default */
+        }
+        .leaderboard.active {
+            display: block; /* Show the active leaderboard */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #333; /* Dark grey background for header */
+            text-align: left;
+            color: lightgrey; /* Light grey text color for header */
+        }
+        td {
+            color: lightgrey; /* Light grey text color for table data */
+        }
+        tr:hover {
+            background-color: rgb(49, 49, 49); /* Light grey background on hover */
+            cursor: pointer; /* Change cursor to pointer (finger) on hover */
+        }
+        h2 {
+            text-align: center;
+            color: lightgrey; /* Light grey text color for headings */
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            margin: 0 5px;
+            background-color: #E09B2D;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            user-select: none;
+        }
+        .tab.active {
+            background-color: #995C1D;
+        }
+        .shop-address {
+            font-size: 0.8em;
+            color: #ccc;
+        }
+        /* Responsive design */
+        @media screen and (max-width: 600px) {
+            .leaderboard-container {
+                padding: 5px;
+            }
+            .leaderboard {
+                padding: 5px;
+                width: 95%; /* Make table slightly narrower */
+                margin: 0 auto; /* Center the table */
+            }
+            table {
+                font-size: 12px; /* Further reduce font size for mobile */
+                width: 100%;
+            }
+            th, td {
+                padding: 4px; /* Further reduce padding for mobile */
+            }
+            td {
+                color: lightgrey; /* Light grey text color for table data */
+            }
+            .shop-address {
+                display: none; /* Hide address on mobile */
+            }
+            /* Ensure table takes full width of its container */
+            table, th, td {
+                width: auto;
+            }
+            /* Adjust specific column widths if necessary */
+            th:nth-child(1), td:nth-child(1) { width: 10%; } /* Rank */
+            th:nth-child(2), td:nth-child(2) { width: 40%; } /* Name */
+            th:nth-child(3), td:nth-child(3) { width: 25%; } /* Score */
+            th:nth-child(4), td:nth-child(4) { width: 25%; } /* Shop */
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <img src="pie-icon.png" alt="Logo" class="logo">
+        <a href="index.html" class="title">NZ Pie Reviews</a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="https://www.arcgis.com/apps/dashboards/841057cd3baa429ab97bcba7e937344f">Find Pies</a>
+            <a href="https://survey123.arcgis.com/share/40300a887f2f49a896b9d2dca91d7ccf">Review Pies</a>
+            <a href="about.html">About</a>
+        </div>
+    </div>
+    <div class="content">
+        <h1>New Zealand's Top Rated Pies</h1>
+        <div class="tabs">
+            <div class="tab active" onclick="showLeaderboard('flavour')">Top Rated Pies</div>
+            <div class="tab" onclick="showLeaderboard('venue')">Top Rated Shops</div>
+        </div>
+        <div class="leaderboard-container">
+            <div id="flavour-leaderboard" class="leaderboard active">
+                <h2>Top Rated Pies</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Shop</th>
+                            <th>Flavour</th>
+                            <th>Avg Price</th>
+                            <th>Avg Rating</th>
+                            <th>Reviews*</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Leaderboard Data -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="venue-leaderboard" class="leaderboard">
+                <h2>Top Rated Shops</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Shop</th>
+                            <th>Avg Price</th>
+                            <th>Avg Rating</th>
+                            <th>Reviews*</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Leaderboard Data -->
+                    </tbody>
+                </table>
+            </div>
+            <p>* Top Pies need 3 or more reviews and Top Shops need 5 or more reviews to be included</p>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="left">
+            <p>&copy; 2023 NZ Pie Reviews</p>
+        </div>
+        <div class="right">
+            <p>Contact: <a href="mailto:info@digitalcompass.co.nz" class="link">info@digitalcompass.co.nz</a></p>
+        </div>
+    </div>
+    <script>
+        function addRowClickListener(row, address) {
+            row.addEventListener('click', () => {
+                const destination = encodeURIComponent(address);
+                const url = `https://www.google.com/maps/dir/?api=1&destination=${destination}`;
+                window.open(url, '_blank');
+            });
+        }
+
+        function showLeaderboard(type) {
+            const flavourTab = document.querySelector('.tab:nth-child(1)');
+            const venueTab = document.querySelector('.tab:nth-child(2)');
+            const flavourLeaderboard = document.getElementById('flavour-leaderboard');
+            const venueLeaderboard = document.getElementById('venue-leaderboard');
+
+            if (type === 'flavour') {
+                flavourTab.classList.add('active');
+                venueTab.classList.remove('active');
+                flavourLeaderboard.classList.add('active');
+                venueLeaderboard.classList.remove('active');
+            } else {
+                flavourTab.classList.remove('active');
+                venueTab.classList.add('active');
+                flavourLeaderboard.classList.remove('active');
+                venueLeaderboard.classList.add('active');
+            }
+        }
+
+        const addresses = [
+            {"shop": "Mr Bun Miramar", "address": "1A Park Road, Miramar, Wellington 6022, New Zealand"},
+            {"shop": "Trentham Pie Shop", "address": "9-A Camp Street, Trentham, Upper Hutt, Wellington 5019, New Zealand"},
+            {"shop": "Princes Street Butcher", "address": "416 Princes Street, Dunedin 9016, New Zealand"},
+            {"shop": "Le Moulin Bakery", "address": "22 Panama Street, Wellington 6011, New Zealand"},
+            {"shop": "The Sandwich Factory Onekawa", "address": "34 Austin Street, Onekawa, Napier 4110, New Zealand"},
+            {"shop": "Alyx’s Sweet Bakery Newlands", "address": "Shop 21, 7 McMillan Court, Newlands, Wellington 6037, New Zealand"},
+            {"shop": "Carlyle Street Bakery", "address": "106 Carlyle Street, Napier 4110, New Zealand"},
+            {"shop": "Salut Otaki", "address": "33 Main Street, Otaki 5512, New Zealand"},
+            {"shop": "Urban Eatery", "address": "232 Main Road, Tawa, Wellington, New Zealand"},
+            {"shop": "Chelsea Bakery and Roasts", "address": "113 Randwick Road, Moera, Lower Hutt 5010, New Zealand"},
+            {"shop": "Fix Federation", "address": "79 High Street, Hutt Central, Lower Hutt 5010, New Zealand"},
+            {"shop": "Olde Beach Bakery", "address": "3 Ono Street, Waikanae Beach, Waikanae 5036, New Zealand"},
+            {"shop": "Janus Bakery", "address": "700 High Street, Lower Hutt 5010, New Zealand"},
+            {"shop": "Clareville Bakery Carterton", "address": "3340 SH2, Clareville, Carterton, New Zealand"},
+            {"shop": "Shaneo's", "address": "302 Hastings Street North, Hastings 4122, New Zealand"},
+            {"shop": "Sanga's Pies", "address": "4 Chardonnay Street, Cromwell 9310, New Zealand"},
+            {"shop": "Daily Bread Bakery Waiwhetu", "address": "1 Wainui Road, Waiwhetu, Lower Hutt 5010, New Zealand"},
+            {"shop": "Pioneer Bakery and Cafe", "address": "46 Fitzherbert Street, Featherston 5710, New Zealand"},
+            {"shop": "Corner Bakery Upper Hutt", "address": "146 Main Street, Upper Hutt, Wellington, New Zealand"},
+            {"shop": "TQ Cafe Thorndon", "address": "127 Thorndon Quay, Pipitea, Wellington 6011, New Zealand"},
+            {"shop": "Trisha's Pies Kilbirnie", "address": "5 Coutts Street, Kilbirnie, Wellington 6022, New Zealand"},
+            {"shop": "Spelt Highgate", "address": "481 Highgate, Maori Hill, Dunedin 9010, New Zealand"},
+            {"shop": "Naenae Hot Bread Shop", "address": "17 Hillary Court, Naenae, Lower Hutt 5011, New Zealand"},
+            {"shop": "Eastbourne Bakery", "address": "4 Rimu Street, Eastbourne, Lower Hutt 5013, New Zealand"},
+            {"shop": "Shoreline Cafe Petone", "address": "2 Bay Street, Petone, Wellington 5012, New Zealand"},
+            {"shop": "Nada Bakery Johnsonville", "address": "64 Johnsonville Road, Johnsonville, Wellington 6037, New Zealand"},
+            {"shop": "Angkor Wat Napier", "address": "83 Kennedy Road, Napier South, Napier 4110, New Zealand"}
+        ];
+
+        const arcgisUrl = 'https://services9.arcgis.com/WTe7RZVR961JhEXe/arcgis/rest/services/Pie_Reviews_Cleaned/FeatureServer/0/query?where=1%3D1&outFields=*&f=json';
+
+        fetch(arcgisUrl)
+            .then(response => response.json())
+            .then(data => {
+                const features = data.features;
+
+                // Data structures for leaderboards
+                const flavourData = {};
+                const venueData = {};
+
+                // Process data to calculate required metrics
+                features.forEach((feature, index) => {
+                    const venue = feature.attributes.Venue_Name;
+                    const flavour = feature.attributes.Flavour_Ty;
+                    const price = feature.attributes.Price;
+                    const rating = feature.attributes.Rating_out;
+
+                    // Unique key for venue-flavour leaderboard
+                    const flavourKey = `${venue}_${flavour}`;
+
+                    if (!flavourData[flavourKey]) {
+                        flavourData[flavourKey] = {
+                            rank: 0,
+                            venue: venue,
+                            flavour: flavour,
+                            total_price: 0,
+                            total_rating: 0,
+                            count: 0
+                        };
+                    }
+
+                    flavourData[flavourKey].total_price += price;
+                    flavourData[flavourKey].total_rating += rating;
+                    flavourData[flavourKey].count += 1;
+
+                    // Data for venue leaderboard
+                    if (!venueData[venue]) {
+                        venueData[venue] = {
+                            rank: 0,
+                            total_price: 0,
+                            total_rating: 0,
+                            count: 0
+                        };
+                    }
+
+                    venueData[venue].total_price += price;
+                    venueData[venue].total_rating += rating;
+                    venueData[venue].count += 1;
+                });
+
+                // Convert flavourData to array and calculate averages
+                const flavourLeaderboard = Object.keys(flavourData).map((key, index) => {
+                    return {
+                        rank: index + 1,
+                        venue: flavourData[key].venue,
+                        flavour: flavourData[key].flavour,
+                        avg_price: flavourData[key].total_price / flavourData[key].count,
+                        avg_rating: flavourData[key].total_rating / flavourData[key].count,
+                        count: flavourData[key].count
+                    };
+                });
+
+                // Filter and sort flavourLeaderboard
+                const filteredFlavourLeaderboard = flavourLeaderboard.filter(item => item.count > 2)
+                    .sort((a, b) => b.avg_rating - a.avg_rating);
+
+                // Populate table with flavour leaderboard data
+                const flavourTbody = document.querySelector('#flavour-leaderboard tbody');
+                filteredFlavourLeaderboard.forEach((item, index) => {
+                    item.rank = index + 1;
+                    const address = addresses.find(a => a.shop === item.venue)?.address || 'Address not found';
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td data-label="Rank">${item.rank}</td>
+                        <td data-label="Shop">${item.venue}<br><span class="shop-address">${address}</span></td>
+                        <td data-label="Flavour">${item.flavour}</td>
+                        <td class="center-text" data-label="Average Price">$${item.avg_price.toFixed(2)}</td>
+                        <td class="center-text" data-label="Average Rating">${item.avg_rating.toFixed(2)} / 10</td>
+                        <td class="center-text" data-label="Total Reviews">${item.count}</td>
+                    `;
+                    flavourTbody.appendChild(tr);
+                    addRowClickListener(tr, address);
+                });
+
+                // Convert venueData to array and calculate averages
+                const venueLeaderboard = Object.keys(venueData).map((venue, index) => {
+                    return {
+                        rank: index + 1,
+                        venue: venue,
+                        avg_price: venueData[venue].total_price / venueData[venue].count,
+                        avg_rating: venueData[venue].total_rating / venueData[venue].count,
+                        count: venueData[venue].count
+                    };
+                });
+
+                // Filter and sort venueLeaderboard
+                const filteredVenueLeaderboard = venueLeaderboard.filter(item => item.count > 4)
+                    .sort((a, b) => b.avg_rating - a.avg_rating);
+
+                // Populate table with venue leaderboard data
+                const venueTbody = document.querySelector('#venue-leaderboard tbody');
+                filteredVenueLeaderboard.forEach((item, index) => {
+                    item.rank = index + 1;
+                    const address = addresses.find(a => a.shop === item.venue)?.address || 'Address not found';
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td data-label="Rank">${item.rank}</td>
+                        <td data-label="Shop">${item.venue}<br><span class="shop-address">${address}</span></td>
+                        <td class="center-text" data-label="Average Price">$${item.avg_price.toFixed(2)}</td>
+                        <td class="center-text" data-label="Average Rating">${item.avg_rating.toFixed(2)} / 10</td>
+                        <td class="center-text" data-label="Total Reviews">${item.count}</td>
+                    `;
+                    venueTbody.appendChild(tr);
+                    addRowClickListener(tr, address);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    </script>
+</body>
+</html>

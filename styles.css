@@ -85,9 +85,11 @@ body {
     padding-bottom: 20px;
 }
 
-.buttons-container .button {
-    margin: 10px; /* Adjust the margin to increase space */
-    /* other button styles */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap in case of narrow screens */
 }
 
 .image-text-container {
@@ -116,6 +118,7 @@ h3 {
 
 p {
     line-height: 30px;
+    text-align: center;
 }
 
 .link {
@@ -182,12 +185,16 @@ p {
     font-weight: bold;
 }
 
-/* Responsive styling */
 @media screen and (max-width: 600px) {
     .nav {
         flex-direction: column; /* Stack title and logo on top of links */
         align-items: center;
         text-align: center;
+    }
+
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
     }
 
     .content {
@@ -196,7 +203,7 @@ p {
         justify-content: center; /* Vertically center content in the container */
         align-items: center; /* Horizontally center content in the container */
         color: white;
-        padding: 20px;
+        padding: 180px 20px 20px; /* Add padding-top to avoid overlap */
         background-image: url('sheffield-pie-background.jpg');
         background-size: cover;
         background-repeat: no-repeat;
@@ -253,6 +260,7 @@ p {
     
     p {
         line-height: 30px;
+        text-align: center;
     }
     
     .link {
@@ -262,3 +270,4 @@ p {
         color: white;
     }
 }
+
