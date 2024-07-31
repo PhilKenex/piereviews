@@ -92,6 +92,10 @@ body {
     flex-wrap: wrap; /* Allow buttons to wrap in case of narrow screens */
 }
 
+.bakels-container {
+    padding-top: 20px;
+}
+
 .image-text-container {
     width: 70%; /* Adjust the width as needed */
     display: flex;
