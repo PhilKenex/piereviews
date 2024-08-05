@@ -112,7 +112,7 @@
         <a href="index.html" class="title">NZ Pie Reviews</a>
         <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
-            <a href="https://www.arcgis.com/apps/dashboards/841057cd3baa429ab97bcba7e937344f">Find Pies</a>
+            <a href="https://www.arcgis.com/apps/dashboards/841057cd3baa429ab97bcba7e937344f">Pie Map</a>
             <a href="https://survey123.arcgis.com/share/40300a887f2f49a896b9d2dca91d7ccf">Review Pies</a>
             <a href="about.html">About</a>
         </div>
@@ -159,7 +159,7 @@
                     </tbody>
                 </table>
             </div>
-            <p>* Top Pies need 3 or more reviews and Top Shops need 5 or more reviews to be included</p>
+            <p>* Top Pies need 4 or more reviews and Top Shops need 5 or more reviews to be included</p>
         </div>
     </div>
     <div class="footer">
@@ -297,7 +297,7 @@
                 });
 
                 // Filter and sort flavourLeaderboard
-                const filteredFlavourLeaderboard = flavourLeaderboard.filter(item => item.count > 2)
+                const filteredFlavourLeaderboard = flavourLeaderboard.filter(item => item.count > 3)
                     .sort((a, b) => b.avg_rating - a.avg_rating);
 
                 // Populate table with flavour leaderboard data
