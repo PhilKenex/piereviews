@@ -17,8 +17,8 @@ window.onload = function() {
     }
 
     // Animate each counter
-    animateCounter('piesCounter', 626, 2000); // Pies
-    animateCounter('shopsCounter', 225, 2000); // Pie Shops
-    animateCounter('flavoursCounter', 117, 2000); // Flavours
+    animateCounter('piesCounter', 631, 2000); // Pies
+    animateCounter('shopsCounter', 228, 2000); // Pie Shops
+    animateCounter('flavoursCounter', 118, 2000); // Flavours
 };
 
